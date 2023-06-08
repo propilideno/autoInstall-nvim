@@ -1,7 +1,7 @@
 # :man_technologist: Automatic Installation for Neovim :scroll:
 [ [**:scroll: Installation :scroll:**](#installation) | [Limitations](#limitations) | [Usefull Links](#usefull-links) ]
 
-![image](https://github.com/propilideno/autoInstall-nvim/assets/105776775/fb942dd1-712e-4501-8d2b-5c7db5d0e8c7)
+![image](https://github.com/propilideno/autoInstall-nvim/assets/105776775/98853acd-42dc-4fdf-913a-65596ebcaea3)
 
 ## Installation
 Open the `terminal` and type:
