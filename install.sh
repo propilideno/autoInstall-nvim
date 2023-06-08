@@ -36,7 +36,7 @@ function appImage_install(){
 	while true; do
 		echo "S - Stable"
 		echo "N - Nightly"
-		echo "What version do you want install? (s/n): "
+		echo "What version do you want install? (S/N): "
 		read -r choice
 		case "$choice" in
 			's'|'S')
