@@ -1,18 +1,42 @@
 #!/bin/bash
 
-function error_input(){
+error_input(){
 	echo "<WRONG INPUT> $1 is not a valid input!"
 }
 
-function appImage_install_debian(){
+installCustomPath(){
+	read -r -p "Do you want install in your /bin/ directory? (y/n): " choice
+ 	case "$choice" in
+		'y'|'Y')
+			sudo mv nvim /bin/
+		;;
+		'n'|'N')
+			read -r -p "Do you want install in your ~/.local/bin/ directory? (y/n): " choice
+			case "$choice" in
+				'y'|'Y')
+					mv nvim ~/.local/bin/
+				;;
+				'n'|'N')
+					read -r -p "Type your custom directory: " path
+					mv nvim "$path"
+				;;
+				*)
+					echo "You can move manually the nvim file to your custom directory"
+				;;
+			esac
+	esac
+}
+
+
+appImage_install_debian(){
     local url_stable="https://github.com/neovim/neovim/releases/download/stable/nvim.appimage"
     local url_nightly="https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage"
 	eval "curl -sL \$url_$1 -o nvim"
 	chmod u+x nvim
-	sudo mv nvim /bin/
+	installCustomPath
 }
 
-function show_version(){
+show_version(){
 	echo "Do you want show version? (y/n): "
 	read -r choice
 	case "$choice" in
@@ -22,7 +46,7 @@ function show_version(){
 	esac
 }
 
-function greetings(){
+greetings(){
 	printf "\n<SUCCESS> The installation is complete!\n"
 	echo "==> Contribute with us giving this repo a Star ⭐"
 	echo "Maintainers:"
@@ -30,9 +54,7 @@ function greetings(){
 	printf "\t  | Lucas R. de Almeida  | @propilideno |   hello@propi.dev |\n\n"
 }
 
-# This should be good if you don't have sudo permission on computer
-# Like when you're on college or a public computer
-function appImage_install(){
+appImage_install(){
 	while true; do
 		echo "S - Stable"
 		echo "N - Nightly"
